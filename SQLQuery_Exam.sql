@@ -37,7 +37,17 @@ values(N'Kingston Fury Beast KF432C16BB/8','C00001',N'Ram Desktop Kingston Fury 
 select * from Parts;
 
 --4
-select * from Parts where Price >= 100;
+select * from Parts where Price > 100;
 --5
 select * from Parts where CateID in
     (select CateID from Categories where CateName like N'CPU');
+--6
+create view v_part as
+select A.PartID,A.PartName,B.CateName,A.Price,A.Quantity from Parts A
+inner join Categories B on A.CateID = B.CateID;
+select * from v_part;
+--7
+create view v_TopParts as
+select top 5 A.PartID,A.PartName,B.CateName,A.Price,A.Quantity from Parts A
+inner join Categories B on A.CateID = B.CateID order by Price desc;
+select * from v_TopParts;
