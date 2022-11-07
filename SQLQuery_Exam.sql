@@ -48,6 +48,5 @@ inner join Categories B on A.CateID = B.CateID;
 select * from v_part;
 --7
 create view v_TopParts as
-select top 5 A.PartID,A.PartName,B.CateName,A.Price,A.Quantity from Parts A
-inner join Categories B on A.CateID = B.CateID order by Price desc;
+select top 5 * from Parts order by Price desc;
 select * from v_TopParts;
